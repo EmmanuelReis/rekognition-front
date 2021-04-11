@@ -1,0 +1,43 @@
+<div id="register">
+    
+    <form>
+        <h2>Register</h2>
+
+        <div id="face">
+            <video id="videoRegister" muted autoplay></video>
+
+            <div id="preview"></div>
+            <span id="edit">&#9998;</span>
+
+            <input id="inputPhoto" type="file" accept="image/*" hidden>
+            <div id="btnUpload" class="btn" type="button">Upload a photo</div>
+        </div>
+
+        <div id="inputs" style="display: flex;">
+            <div style="position: relative;">
+                <input id="inputUser" type="text" placeholder="Username">
+                <div class="border"></div>
+                <label>Username</label>
+            </div>
+
+            <div style="position: relative;">
+                <input id="inputPwd" type="password" placeholder="Password">
+                <div class="border"></div>
+                <label>Password</label>
+            </div>
+        </div>
+
+        <button id="btnRegister" class="btn">Create Account</button>
+
+        <div id="links">
+            <a id="back" class="links">Back to login</a>
+        </div>
+    </form>
+</div>
+
+<script type="module">
+    import Register from './static/register/index.mjs'
+
+    new Register()
+</script>
+

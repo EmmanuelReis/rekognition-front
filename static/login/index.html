@@ -1,0 +1,37 @@
+<div id="login">
+    
+    <form>
+        <h2 id="loginTitle">Recognized login</h2>
+
+        <div id="inputs">
+            <div style="position: relative;">
+                <input id="inputUser" type="text" placeholder="Username">
+                <div class="border"></div>
+                <label>Username</label>
+            </div>
+
+            <div style="position: relative;">
+                <input id="inputPwd" type="password" placeholder="Password">
+                <div class="border"></div>
+                <label>Password</label>
+            </div>
+            <div id="links">
+                <a id="createAccount" class="links">Create Account</a>
+                <a id="type" class="links">Change login type</a>
+            </div>
+        </div>
+
+        <div id="face">
+            <video id="videoLogin" muted autoplay></video>
+        </div>
+
+        <div id="btnLogin" class="btn" data-login="face">Login</div>
+    </form>
+</div>
+
+<script type="module">
+    import Login from './static/login/index.mjs'
+
+    new Login()
+</script>
+
