@@ -1,13 +1,13 @@
 <div id="gallery">
     <section id="profile">
-        <img src="./static/assets/img.jfif"/>
+        <img/>
         <h1>Your gallery</h1>
 
         <h4 id="logout">Logout</h4>
     </section>
 
     <section>
-        <h3>Emmanuel Reis</h3>
+        <h3></h3>
 
         <nav>
             <ul>
@@ -19,8 +19,6 @@
         <div id="uploads" class="photosContent" style="display: flex">
             <input id="inputPhoto" type="file" accept="image/*" hidden>
             <div id="cardUpload"><span>&#8613;</span></div>
-
-            <div class="card"><img src="./static/assets/img.jfif"><label>Emmanuel Reis</label></div>
         </div>
         
         <div id="you" class="photosContent"></div>
@@ -29,7 +27,46 @@
 
 <script type="module">
     import Gallery from './static/gallery/index.mjs'
+    import constants from './static/assets/constants.mjs'
+
+    const { baseURL } = constants
 
     new Gallery()
+
+    const username = localStorage.getItem('userrecognized')
+    
+    $('h3').text(username)
+    
+    fetch(`${baseURL}/registro-user?username=${username}`, {
+            method: 'GET'
+        })
+        .then(response => {
+            response.json().then(json => {
+                const { data } = json
+
+                $('#profile img').attr('src', data.photo_url)
+
+                data.uploads.forEach(upload => {
+                    $('#uploads').append(`
+                        <div class="card">
+                            <img loading=lazy src="${upload}">
+                        </div>
+                    `)
+                })
+
+                data.photos_of_you.forEach(photo => {
+                    const arrayURL = photo.split('/')
+                    const user = arrayURL[arrayURL.length - 1].split('-')[0]
+                    const by = user == username ? 'you' : user
+
+                    $('#you').append(`
+                        <div class="card">
+                            <img loading=lazy src="${photo}">
+                            <label><strong>by:</strong> ${by}</label>
+                        </div>
+                    `)
+                })
+            });
+        })
 </script>
 

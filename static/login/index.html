@@ -3,6 +3,8 @@
     <form>
         <h2 id="loginTitle">Recognized login</h2>
 
+        <div id="alert" class="alert"></div>
+
         <div id="inputs">
             <div style="position: relative;">
                 <input id="inputUser" type="text" placeholder="Username">
@@ -15,17 +17,19 @@
                 <div class="border"></div>
                 <label>Password</label>
             </div>
-            <div id="links">
-                <a id="createAccount" class="links">Create Account</a>
-                <a id="type" class="links">Change login type</a>
-            </div>
         </div>
 
         <div id="face">
             <video id="videoLogin" muted autoplay></video>
+            <div id="picture"></div>
         </div>
 
         <div id="btnLogin" class="btn" data-login="face">Login</div>
+        
+        <div id="links">
+            <a id="createAccount" class="links">Create Account</a>
+            <a id="type" class="links">Change login type</a>
+        </div>
     </form>
 </div>
 

@@ -1,5 +1,4 @@
 <div id="register">
-    
     <form>
         <h2>Register</h2>
 
@@ -10,7 +9,11 @@
             <span id="edit">&#9998;</span>
 
             <input id="inputPhoto" type="file" accept="image/*" hidden>
-            <div id="btnUpload" class="btn" type="button">Upload a photo</div>
+
+            <div id="rowBtn">
+                <div id="btnTake" class="btn">Take a picture</div>
+                <div id="btnUpload" class="btn">Upload photo</div>
+            </div>
         </div>
 
         <div id="inputs" style="display: flex;">
@@ -27,8 +30,10 @@
             </div>
         </div>
 
-        <button id="btnRegister" class="btn">Create Account</button>
+        <div id="btnRegister" class="btn">Create Account</div>
 
+        <div id="alert" class="alert"></div>
+        
         <div id="links">
             <a id="back" class="links">Back to login</a>
         </div>

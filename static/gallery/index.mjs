@@ -1,8 +1,10 @@
+import constants from '../assets/constants.mjs'
+
+const { baseURL } = constants
+
 class Gallery {
     constructor() {
         this._init()
-
-        localStorage.setItem('userrecognized', 'id')
     }
 
     _init() {
@@ -26,6 +28,48 @@ class Gallery {
 
         $('#cardUpload').on('click', function() {
             $('#inputPhoto').trigger('click')
+        })
+
+        $('#inputPhoto').on('change', async function() {
+            const username = localStorage.getItem('userrecognized')
+            const url = URL.createObjectURL(this.files[0])
+            const id = `${username}-${Date.now()}`
+
+            $('#uploads').append(`
+                <div id="${id}" class="card">
+                    <img loading=lazy src="${url}">
+                    <label><strong>by:</strong> ${username}</label>
+                </div>
+            `)
+
+            const fetchImgToBlob = await fetch(url)
+            const blob = await fetchImgToBlob.blob()
+
+            const reader = new FileReader()
+
+            reader.onloadend = async () => {
+                const response = await fetch(`${baseURL}/upload`, {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        b64img: reader.result, 
+                        username 
+                    })
+                })
+    
+                const data = await response.json()
+                
+                if(data.statusCode != 200) {
+                    alert("Error on upload")
+                    
+                    $(`#${id}`).remove()
+    
+                    return
+                }
+    
+                $('#inputPhoto').val('')
+            }
+
+            reader.readAsDataURL(blob)
         })
     }
 }
