@@ -38,7 +38,6 @@ class Gallery {
             $('#uploads').append(`
                 <div id="${id}" class="card">
                     <img loading=lazy src="${url}">
-                    <label><strong>by:</strong> ${username}</label>
                 </div>
             `)
 

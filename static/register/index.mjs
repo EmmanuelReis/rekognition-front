@@ -25,8 +25,8 @@ class Register {
 
     _addEventListeners() {
         $("#back").on('click', () => {
-            if(document.getElementById('videoLogin').srcObject)
-                document.getElementById('videoLogin').srcObject.getTracks().forEach(function(track) {
+            if(document.getElementById('videoRegister').srcObject)
+                document.getElementById('videoRegister').srcObject.getTracks().forEach(function(track) {
                     track.stop();
                 });
 
